@@ -10,11 +10,15 @@ void main() {
 
   // menghitung luas persegi
   double luasPersegi = sisi * sisi;
+  double kelilingPersegi = 4 * sisi;
   print('Luas Persegi : $luasPersegi');
+  print('Keliling Persegi : $kelilingPersegi');
 
   // menghitung luas persegi panjang
   double luasPersegiPanjang = panjang * lebar;
+  double kelilingPersegiPanjang = (2*panjang) + (2*lebar);
   print('Luas Persegi Panjang : $luasPersegiPanjang');
+  print('Keliling Persegi Panjnag : $kelilingPersegiPanjang');
 
   // soal lingkaran
   double jariJari = 7.0;
@@ -53,6 +57,8 @@ void main() {
   } else {
     print("$kata bukan sebuah palindrom.");
   }
+
+  faktor();
 }
 
 bool isPalindrome(String kata) {
@@ -67,4 +73,15 @@ bool isPalindrome(String kata) {
   return true;
 }
 
-  
+// soal eksplorasi 2
+// soal faktor bilangan
+void faktor() {
+  int bilangan = 30; 
+
+  print("Faktor-faktor dari bilangan $bilangan adalah:");
+  for (int i = 1; i <= bilangan; i++) {
+    if (bilangan % i == 0) {
+      print(i);
+    }
+  }
+}
