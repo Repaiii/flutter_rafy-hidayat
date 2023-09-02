@@ -10,8 +10,8 @@ Future<List<int>> kalikanList(List<int> data, int pengali) async {
 }
 
 void main() async {
-  List<int> data = [1, 2, 3, 4, 5];
-  int pengali = 2;
+  final List<int> data = [1, 2, 3, 4, 5];
+  final int pengali = 2;
 
   List<int> hasil = await kalikanList(data, pengali);
 
