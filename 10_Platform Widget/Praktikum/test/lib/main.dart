@@ -6,12 +6,12 @@ import 'exploration_page.dart';
 import 'cupertino_app.dart';
 
 //material app
-/*void main() {
+void main() {
   runApp(MaterialApp(
     home: MyMaterialApp(), 
     theme: ThemeData.dark(),
   ));
-}*/
+}
 
 
 //cupertino app
@@ -33,11 +33,11 @@ class MyCupertinoApp extends StatelessWidget {
 
 
 //soal eksplorasi
-void main() {
+/*void main() {
   runApp(MaterialApp(
     home: ExplorationPage(),
     theme: ThemeData(
       primaryColor: Color(0xFF6200EE),
     ),
   ));
-}
+}*/

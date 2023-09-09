@@ -45,8 +45,12 @@ class _MyMaterialAppState extends State<MyMaterialApp> {
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
-            DrawerHeader(
-              child: Text('Home'),
+            ListTile(
+              title: Text('Home'),
+              onTap: () {
+                Navigator.pop(context);
+                // Tambahkan logika navigasi ke halaman pengaturan di sini
+              },
             ),
             ListTile(
               title: Text('Settings'),
