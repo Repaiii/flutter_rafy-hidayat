@@ -1,4 +1,3 @@
-// contact.dart
 import 'package:flutter/material.dart';
 
 class Contact {
@@ -6,7 +5,7 @@ class Contact {
   final String phoneNumber;
   final DateTime selectedDate;
   final Color selectedColor;
-  final String? selectedFile; // Menggunakan tipe String? untuk path file
+  final String? selectedFile;
 
   Contact({
     required this.name,
