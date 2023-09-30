@@ -5,6 +5,8 @@ import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ContactsPage extends StatefulWidget {
+  const ContactsPage({super.key});
+
   @override
   _ContactsPageState createState() => _ContactsPageState();
 }
@@ -25,10 +27,11 @@ class _ContactsPageState extends State<ContactsPage> {
       firstDate: DateTime(2000),
       lastDate: DateTime(2101),
     )) ?? DateTime.now();
-    if (picked != null && picked != selectedDate)
+    if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
       });
+    }
   }
 
   Future<void> _selectColor(BuildContext context) async {
@@ -123,10 +126,10 @@ class _ContactsPageState extends State<ContactsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Contacts'),
+        title: const Text('Contacts'),
         actions: [
           IconButton(
-            icon: Icon(Icons.info),
+            icon: const Icon(Icons.info),
             onPressed: () {
               // Add logic to show information
             },
@@ -134,19 +137,19 @@ class _ContactsPageState extends State<ContactsPage> {
         ],
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Center(
+            const Center(
               child: Icon(
                 Icons.phone,
                 size: 48,
                 color: Colors.black,
               ),
             ),
-            SizedBox(height: 16),
-            Center(
+            const SizedBox(height: 16),
+            const Center(
               child: Text(
                 'Create New Contacts',
                 style: TextStyle(
@@ -155,8 +158,8 @@ class _ContactsPageState extends State<ContactsPage> {
                 ),
               ),
             ),
-            SizedBox(height: 8),
-            Center(
+            const SizedBox(height: 8),
+            const Center(
               child: Text(
                 'Please fill in the details below',
                 style: TextStyle(
@@ -165,9 +168,9 @@ class _ContactsPageState extends State<ContactsPage> {
                 ),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             TextFormField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Name',
                 border: OutlineInputBorder(),
                 fillColor: Color(0xFFEADDFF),
@@ -179,9 +182,9 @@ class _ContactsPageState extends State<ContactsPage> {
                 });
               },
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             TextFormField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Phone Number',
                 border: OutlineInputBorder(),
                 fillColor: Color(0xFFEADDFF),
@@ -193,27 +196,27 @@ class _ContactsPageState extends State<ContactsPage> {
                 });
               },
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Row(
               children: [
-                Text('Select Date: '),
+                const Text('Select Date: '),
                 TextButton(
                   onPressed: () {
                     _selectDate(context);
                   },
                   child: Text(
                     "${selectedDate.toLocal()}".split(' ')[0],
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Row(
               children: [
-                Text('Select Color: '),
+                const Text('Select Color: '),
                 TextButton(
                   onPressed: () {
                     _selectColor(context);
@@ -226,22 +229,22 @@ class _ContactsPageState extends State<ContactsPage> {
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Row(
               children: [
-                Text('Select File: '),
+                const Text('Select File: '),
                 TextButton(
                   onPressed: () {
                     _selectFile(context);
                   },
-                  child: Icon(
+                  child: const Icon(
                     Icons.attach_file,
                     color: Color(0xFF6750A4),
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Align(
               alignment: Alignment.centerRight,
               child: ElevatedButton(
@@ -251,16 +254,16 @@ class _ContactsPageState extends State<ContactsPage> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xFF6750A4),
+                  backgroundColor: const Color(0xFF6750A4),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25.0),
                   ),
                 ),
-                child: Text('Submit'),
+                child: const Text('Submit'),
               ),
             ),
-            SizedBox(height: 32),
-            Center(
+            const SizedBox(height: 32),
+            const Center(
               child: Text(
                 'List Contacts',
                 style: TextStyle(
@@ -269,15 +272,15 @@ class _ContactsPageState extends State<ContactsPage> {
                 ),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ListView.builder(
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: contacts.length,
               itemBuilder: (context, index) {
                 final contact = contacts[index];
                 return Card(
-                  margin: EdgeInsets.only(bottom: 16),
+                  margin: const EdgeInsets.only(bottom: 16),
                   child: ListTile(
                     title: Text(contact['name']),
                     subtitle: Text(contact['phoneNumber']),
@@ -285,7 +288,7 @@ class _ContactsPageState extends State<ContactsPage> {
                       backgroundColor: contact['color'],
                       child: Text(
                         contact['name'][0].toUpperCase(),
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
                         ),
                       ),
@@ -294,7 +297,7 @@ class _ContactsPageState extends State<ContactsPage> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         IconButton(
-                          icon: Icon(Icons.edit),
+                          icon: const Icon(Icons.edit),
                           onPressed: () {
                             // Add edit contact logic here
                             setState(() {
@@ -310,7 +313,7 @@ class _ContactsPageState extends State<ContactsPage> {
                           },
                         ),
                         IconButton(
-                          icon: Icon(Icons.delete),
+                          icon: const Icon(Icons.delete),
                           onPressed: () {
                             _deleteContact(index);
                           },

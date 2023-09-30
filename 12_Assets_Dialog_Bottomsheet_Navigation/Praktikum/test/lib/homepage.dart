@@ -3,10 +3,12 @@ import 'package:test/grid_page.dart';
 import 'package:test/contacts_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,9 +16,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: const HomePage(),
       routes: {
-        '/grid': (context) => GridPage(),
+        '/grid': (context) => const GridPage(),
         '/contacts': (context) => ContactsPage(),
       },
     );
@@ -24,17 +26,19 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 1; // Mulai dari halaman Home
+  int _selectedIndex = 1; 
 
   static List<String> appBarTitles = [
-    'Contacts',    // Judul untuk halaman ContactsPage
-    'Flutter App', // Judul untuk halaman HomePage
-    'Gallery',     // Judul untuk halaman GridPage
+    'Contacts',    
+    'Flutter App', 
+    'Gallery',    
   ];
 
   static final List<Widget> _widgetOptions = <Widget>[
@@ -53,7 +57,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     ),
-    GridPage(),
+    const GridPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -70,7 +74,7 @@ class _HomePageState extends State<HomePage> {
           child: Text(appBarTitles[_selectedIndex]),
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             if (_selectedIndex > 0) {
               setState(() {
@@ -81,7 +85,7 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.arrow_forward),
+            icon: const Icon(Icons.arrow_forward),
             onPressed: () {
               if (_selectedIndex < 2) {
                 setState(() {

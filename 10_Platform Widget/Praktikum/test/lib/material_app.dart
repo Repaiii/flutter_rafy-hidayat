@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'contacts_page.dart'; // Import halaman kontak
 
 class MyMaterialApp extends StatefulWidget {
+  const MyMaterialApp({super.key});
+
   @override
   _MyMaterialAppState createState() => _MyMaterialAppState();
 }
@@ -18,18 +20,18 @@ class _MyMaterialAppState extends State<MyMaterialApp> {
   @override
   Widget build(BuildContext context) {
     // List of pages for the BottomNavigationBar
-    final List<Widget> _pages = [
-      Center(child: Text('This is Material App')),
-      ContactsPage(), // Halaman kontak
+    final List<Widget> pages = [
+      const Center(child: Text('This is Material App')),
+      const ContactsPage(), // Halaman kontak
     ];
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Material App'),
+        title: const Text('Material App'),
       ),
-      body: _pages[_selectedIndex], // Tampilkan halaman yang dipilih
+      body: pages[_selectedIndex], // Tampilkan halaman yang dipilih
       bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
@@ -46,14 +48,14 @@ class _MyMaterialAppState extends State<MyMaterialApp> {
         child: ListView(
           children: <Widget>[
             ListTile(
-              title: Text('Home'),
+              title: const Text('Home'),
               onTap: () {
                 Navigator.pop(context);
                 // Tambahkan logika navigasi ke halaman pengaturan di sini
               },
             ),
             ListTile(
-              title: Text('Settings'),
+              title: const Text('Settings'),
               onTap: () {
                 Navigator.pop(context);
                 // Tambahkan logika navigasi ke halaman pengaturan di sini

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class GridPage extends StatelessWidget {
+  const GridPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -122,7 +124,7 @@ class GridPage extends StatelessWidget {
 class NewPage extends StatelessWidget {
   final String imageUrl;
 
-  NewPage({required this.imageUrl});
+  const NewPage({super.key, required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {

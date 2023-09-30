@@ -8,6 +8,8 @@ class Contact {
 }
 
 class Contacts extends StatefulWidget {
+  const Contacts({super.key});
+
   @override
   _ContactsPageState createState() => _ContactsPageState();
 }
@@ -23,21 +25,21 @@ class _ContactsPageState extends State<Contacts> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Contacts'),
+        title: const Text('Contacts'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Ikon telepon (gambar bebas)
-            Icon(
+            const Icon(
               Icons.phone,
               size: 40.0, // Perkecil ukuran ikon
               color: Color(0xFFE7E0EC), // Warna ikon yang sama dengan widget lain
             ),
 
             // Judul "Create New Contacts"
-            Text(
+            const Text(
               'Create New Contacts',
               style: TextStyle(
                 fontSize: 24,
@@ -46,7 +48,7 @@ class _ContactsPageState extends State<Contacts> {
             ),
 
             // Deskripsi
-            Text(
+            const Text(
               'Please fill in the details below',
               style: TextStyle(
                 fontSize: 16,
@@ -56,10 +58,10 @@ class _ContactsPageState extends State<Contacts> {
 
             // Form input nama
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0), // Tambahkan jarak antara textfield
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0), // Tambahkan jarak antara textfield
               child: TextFormField(
                 controller: nameController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Nama',
                   fillColor: Color(0xFFE7E0EC), // Warna latar belakang
                   filled: true,
@@ -70,10 +72,10 @@ class _ContactsPageState extends State<Contacts> {
 
             // Form input nomor telepon
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0), // Tambahkan jarak antara textfield
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0), // Tambahkan jarak antara textfield
               child: TextFormField(
                 controller: phoneController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Nomor Telepon',
                   fillColor: Color(0xFFE7E0EC), // Warna latar belakang
                   filled: true,
@@ -86,7 +88,7 @@ class _ContactsPageState extends State<Contacts> {
             Align(
               alignment: Alignment.centerRight,
               child: Padding(
-                padding: EdgeInsets.all(16.0), // Beri jarak dari textfield
+                padding: const EdgeInsets.all(16.0), // Beri jarak dari textfield
                 child: ElevatedButton(
                   onPressed: () {
                     if (isEditing) {
@@ -110,19 +112,19 @@ class _ContactsPageState extends State<Contacts> {
                     // Memperbarui tampilan daftar kontak
                     setState(() {});
                   },
-                  child: Text(isEditing ? 'Update' : 'Submit'),
                   style: ElevatedButton.styleFrom(
-                    primary: Color(0xFF333333), // Ubah warna tombol Submit
+                    primary: const Color(0xFF333333), // Ubah warna tombol Submit
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(25.0), // Tambahkan border radius
                     ),
                   ),
+                  child: Text(isEditing ? 'Update' : 'Submit'),
                 ),
               ),
             ),
 
             // Widget untuk menampilkan daftar kontak
-            SizedBox(height: 32.0), // Beri jarak dari list kontak
+            const SizedBox(height: 32.0), // Beri jarak dari list kontak
             ContactList(
               contacts: contacts,
               onDelete: (index) {
@@ -152,7 +154,7 @@ class ContactList extends StatelessWidget {
   final Function(int) onDelete;
   final Function(int) onEdit;
 
-  ContactList({
+  const ContactList({super.key, 
     required this.contacts,
     required this.onDelete,
     required this.onEdit,
@@ -164,7 +166,7 @@ class ContactList extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         // Judul "List Contacts"
-        Text(
+        const Text(
           'List Contacts',
           style: TextStyle(
             fontSize: 24,
@@ -182,10 +184,10 @@ class ContactList extends StatelessWidget {
             final initial = contact.name.isNotEmpty ? contact.name[0] : '?';
             return ListTile(
               leading: CircleAvatar(
-                backgroundColor: Color(0xFFE7E0EC),
+                backgroundColor: const Color(0xFFE7E0EC),
                 child: Text(
                   initial.toUpperCase(),
-                  style: TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.black),
                 ),
               ),
               title: Text(contact.name),
@@ -194,14 +196,14 @@ class ContactList extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   IconButton(
-                    icon: Icon(Icons.edit),
+                    icon: const Icon(Icons.edit),
                     onPressed: () {
                       // Memulai editing data kontak
                       onEdit(index);
                     },
                   ),
                   IconButton(
-                    icon: Icon(Icons.delete),
+                    icon: const Icon(Icons.delete),
                     onPressed: () {
                       // Menghapus data kontak
                       onDelete(index);

@@ -8,7 +8,7 @@ import 'cupertino_app.dart';
 //material app
 void main() {
   runApp(MaterialApp(
-    home: MyMaterialApp(), 
+    home: const MyMaterialApp(), 
     theme: ThemeData.dark(),
   ));
 }

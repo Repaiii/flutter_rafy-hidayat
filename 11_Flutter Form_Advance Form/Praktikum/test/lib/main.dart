@@ -18,9 +18,9 @@ import 'contacs_page.dart';
 // soal advance
 void main() {
   runApp(MaterialApp(
-    home: ContactsPage(),
+    home: const ContactsPage(),
     theme: ThemeData(
-      primaryColor: Color(0xFFEADDFF),
+      primaryColor: const Color(0xFFEADDFF),
     ),
   ));
 }

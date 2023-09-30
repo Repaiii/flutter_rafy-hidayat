@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 
 class ExplorationPage extends StatelessWidget {
+  const ExplorationPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF6200EE), // Ubah warna AppBar
-        title: Center( // Teks menjadi tengah
+        backgroundColor: const Color(0xFF6200EE), // Ubah warna AppBar
+        title: const Center( // Teks menjadi tengah
           child: Text('My Flutter App'),
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search),
             onPressed: () {
               // Tambahkan logika pencarian di sini
             },
@@ -19,7 +21,7 @@ class ExplorationPage extends StatelessWidget {
         ],
       ),
       body: ListView(
-        children: [
+        children: const [
           ListTile(title: Text('Learn Flutter')),
           ListTile(title: Text('Learn ReactJS')),
           ListTile(title: Text('Learn VueJS')),
@@ -33,11 +35,11 @@ class ExplorationPage extends StatelessWidget {
         onPressed: () {
           // Tambahkan logika untuk tombol tindakan di sini
         },
-        backgroundColor: Color(0xFF03DAC5),
-        child: Icon(Icons.add),
+        backgroundColor: const Color(0xFF03DAC5),
+        child: const Icon(Icons.add),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
             label: 'Favorites',
@@ -55,7 +57,7 @@ class ExplorationPage extends StatelessWidget {
         onTap: (index) {
           // Tambahkan logika untuk menangani pemilihan tab di sini
         },
-        backgroundColor: Color(0xFF6200EE), // Ubah warna BottomNavigationBar
+        backgroundColor: const Color(0xFF6200EE), // Ubah warna BottomNavigationBar
         selectedItemColor: Colors.white, // Warna teks yang dipilih
         unselectedItemColor: Colors.white.withOpacity(0.6), // Warna teks yang tidak dipilih
       ),

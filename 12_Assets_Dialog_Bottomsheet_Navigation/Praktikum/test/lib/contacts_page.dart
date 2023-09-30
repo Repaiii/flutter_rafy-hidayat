@@ -1,10 +1,9 @@
-// ignore_for_file: unnecessary_null_comparison
-
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:image_picker/image_picker.dart';
 import 'contact.dart';
 
+// ignore: use_key_in_widget_constructors
 class ContactsPage extends StatefulWidget {
   @override
   _ContactsPageState createState() => _ContactsPageState();
@@ -27,10 +26,11 @@ class _ContactsPageState extends State<ContactsPage> {
           lastDate: DateTime(2101),
         )) ??
         DateTime.now();
-    if (picked != null && picked != selectedDate)
+    if (picked != selectedDate) {
       setState(() {
         selectedDate = picked;
       });
+    }
   }
 
   Future<void> _selectColor(BuildContext context) async {

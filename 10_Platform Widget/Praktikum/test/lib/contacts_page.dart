@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 class ContactsPage extends StatelessWidget {
+  const ContactsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.white,
       body: ContactList(),
     );
@@ -11,6 +13,8 @@ class ContactsPage extends StatelessWidget {
 }
 
 class ContactList extends StatelessWidget {
+  const ContactList({super.key});
+
   @override
   Widget build(BuildContext context) {
     List<Map<String, String?>> contacts = [
@@ -37,20 +41,20 @@ class ContactList extends StatelessWidget {
             backgroundColor: Colors.blue,
             child: Text(
               initial,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
               ),
             ),
           ),
           title: Text(
             contact['nama'] ?? '',
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.black,
             ),
           ),
           subtitle: Text(
             contact['telepon'] ?? '',
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.grey,
             ),
           ),
