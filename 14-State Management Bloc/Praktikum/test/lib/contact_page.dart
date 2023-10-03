@@ -9,7 +9,7 @@ class ContactsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Contacts App'),
+        title: const Text('Contacts App'),
       ),
       body: BlocBuilder<ContactBloc, ContactState>(
         builder: (context, state) {
