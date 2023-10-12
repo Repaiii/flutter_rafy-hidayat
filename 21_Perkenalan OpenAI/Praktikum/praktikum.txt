@@ -1,0 +1,12 @@
+Tweet Classifier (Sentiment analysis)
+
+user1 : I loved the new Batman movie!
+user2 : I never felt more disappointed in my life after that Man United game
+user3 : I think Arsenal have a chance to win the league this season
+user4 : AC Milan is cooking in seria A!
+user5 : Chelsea's doing bad business as always
+
+Assistent : positive
+
+dari respon yang diberikan oleh Assistent, dapat disimpulkan bahwa tweet dari user1 hingga user5 mengarah ke positif.
+Walaupun 2 dari 3 dari statement user tersebut mengekspresikan kekecewaan
