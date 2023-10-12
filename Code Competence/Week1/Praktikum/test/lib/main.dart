@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'registration_page.dart'; // Import file registration.dart
-import 'welcome_section.dart'; // Import file welcome_section.dart
+import 'registration_page.dart';
+import 'welcome_section.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,8 +33,8 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const WelcomeSection(), // Gunakan WelcomeSection dari welcome_section.dart
-            RegistrationPage(), // Gunakan RegistrationPage dari registration.dart
+            const WelcomeSection(),
+            RegistrationPage(), 
           ],
         ),
       ),
