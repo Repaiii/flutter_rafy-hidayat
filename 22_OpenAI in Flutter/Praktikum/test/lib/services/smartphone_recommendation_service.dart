@@ -1,46 +1,48 @@
 // lib/services/smartphone_recommendation_service.dart
-import 'dart:convert';
-import '../constants/open_ai.dart';
-import 'package:http/http.dart' as http;
-import 'package:test/models/smartphone_recommendation.dart';
+import 'package:dio/dio.dart';
 
 class SmartphoneRecommendationService {
-  static Future<SmartphoneRecommendation> getRecommendations({
-    required String priceRange,
-    required String cameraQuality,
-    required String storageCapacity,
+  final Dio _dio = Dio();
+
+  Future<Map<String, dynamic>?> getRecommendations({
+    required String harga,
+    required String camera,
+    required String storage,
   }) async {
-    late SmartphoneRecommendation recommendation;
-
     try {
-      var url = Uri.parse('https://api.openai.com/v1/completions');
+      _dio.options = BaseOptions(
+        baseUrl: 'https://api.openai.com/v1/',
+        headers: {
+          'Authorization': 'Bearer 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',
+        },
+      );
 
-      Map<String, String> headers = {
-        'Content-Type': 'application/json;charset=UTF-8',
-        'Charset': 'utf-8',
-        'Authorization': 'Bearer $apiKey'
-      };
+      final response = await _dio.post(
+        'completions',
+        data: {
+          "model": "text-davinci-003",
+          "prompt":
+              "Kamu adalah seorang gadget expert, Berikan saya rekomendasi HP dengan kisaran harga Rp. $harga, kamera $camera MP, dan storage $storage GB.",
+          "temperature": 0.4,
+          "max_tokens": 900,
+          "top_p": 1,
+          "frequency_penalty": 0,
+          "presence_penalty": 0,
+        },
+      );
 
-      String promptData =
-          "You are a smartphone expert. Please recommend a smartphone with a price range of $priceRange, camera quality of $cameraQuality Megapixel, and storage capacity of $storageCapacity Gigabyte.";
-      final data = jsonEncode({
-        "model": "text-davinci-003",
-        "prompt": promptData,
-        "temperature": 0.4,
-        "max_tokens": 64,
-        "top_p": 1,
-        "frequency_penalty": 0,
-        "presence_penalty": 0
-      });
+      print('Response Status Code: ${response.statusCode}');
+      print('Response Body: ${response.data}');
 
-      var response = await http.post(url, headers: headers, body: data);
       if (response.statusCode == 200) {
-        recommendation = SmartphoneRecommendation.fromJson(json.decode(response.body));
+        return response.data;
+      } else {
+        print('Failed to make API request: ${response.statusCode}');
       }
-    } catch (e) {
-      throw Exception('Error occurred when sending the request.');
+    } catch (error) {
+      // An error occurred
+      print('Error: $error');
     }
-
-    return recommendation;
+    return null;
   }
 }

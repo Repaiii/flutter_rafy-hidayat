@@ -1,4 +1,4 @@
-// lib/screens/home.dart
+// lib/screens/home_screen.dart
 import 'package:flutter/material.dart';
 import 'package:test/screens/result_page.dart';
 import 'package:test/services/smartphone_recommendation_service.dart';
@@ -12,50 +12,11 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _priceController = TextEditingController();
+  final TextEditingController _budgetController = TextEditingController();
   final TextEditingController _cameraController = TextEditingController();
   final TextEditingController _storageController = TextEditingController();
   bool isLoading = false;
-
-  void _getRecommendations() async {
-    if (_formKey.currentState!.validate()) {
-      setState(() {
-        isLoading = true;
-      });
-
-      try {
-        final result = await SmartphoneRecommendationService.getRecommendations(
-          priceRange: _priceController.text,
-          cameraQuality: _cameraController.text,
-          storageCapacity: _storageController.text,
-        );
-
-        if (mounted) {
-          setState(() {
-            isLoading = false;
-          });
-
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) {
-                return ResultScreen(smartphoneRecommendation: result);
-              },
-            ),
-          );
-        }
-      } catch (e) {
-        const snackBar = SnackBar(
-          content: Text('Failed to send a request. Please try again.'),
-        );
-
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-
-        setState(() {
-          isLoading = false;
-        });
-      }
-    }
-  }
+  Map<String, dynamic>? recommendation;
 
   @override
   Widget build(BuildContext context) {
@@ -81,14 +42,14 @@ class _HomeScreenState extends State<HomeScreen> {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: TextFormField(
-                  controller: _priceController,
+                  controller: _budgetController,
                   decoration: const InputDecoration(
-                    labelText: 'Price Range',
-                    hintText: 'Enter the price range',
+                    labelText: 'Budget',
+                    hintText: 'Enter the budget',
                   ),
                   validator: (value) {
                     if (value?.isEmpty ?? true) {
-                      return 'Please enter the price range';
+                      return 'Please enter the budget';
                     }
                     return null;
                   },
@@ -133,7 +94,45 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: CircularProgressIndicator(),
                       )
                     : ElevatedButton(
-                        onPressed: _getRecommendations,
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            setState(() {
+                              isLoading = true;
+                            });
+                            final result = await SmartphoneRecommendationService()
+                                .getRecommendations(
+                              harga: _budgetController.text,
+                              camera: _cameraController.text,
+                              storage: _storageController.text,
+                            );
+
+                            if (result != null) {
+                              setState(() {
+                                recommendation = result;
+                              });
+
+                              // Navigasi ke halaman hasil
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return ResultScreen(responseData: recommendation!);
+                                  },
+                                ),
+                              );
+                            } else {
+                              // Tangani kesalahan lain jika perlu
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('An error occurred.'),
+                                ),
+                              );
+                            }
+
+                            setState(() {
+                              isLoading = false;
+                            });
+                          }
+                        },
                         child: const Text("Get Recommendations"),
                       ),
               ),

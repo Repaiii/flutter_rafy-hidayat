@@ -1,12 +1,10 @@
-// lib/screens/result_page.dart
+// lib/screens/result_screen.dart
 import 'package:flutter/material.dart';
-import 'package:test/models/smartphone_recommendation.dart';
 
 class ResultScreen extends StatelessWidget {
-  final SmartphoneRecommendation smartphoneRecommendation;
+  final Map<String, dynamic>? responseData;
 
-  const ResultScreen({Key? key, required this.smartphoneRecommendation})
-      : super(key: key);
+  ResultScreen({Key? key, required this.responseData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,39 +12,50 @@ class ResultScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Recommendations'),
       ),
-      body: Column(
-        children: [
-          const Padding(
-            padding: EdgeInsets.all(16),
-            child: Text(
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
               "Recommendations",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+              ),
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              'Recommendations:',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              'Name: ${smartphoneRecommendation.name}\n'
-              'Brand: ${smartphoneRecommendation.brand}\n'
-              'Price: ${smartphoneRecommendation.price}\n'
-              'Camera: ${smartphoneRecommendation.camera}\n'
-              'Storage: ${smartphoneRecommendation.storage}\n'
-              'Description: ${smartphoneRecommendation.description}',
-              textAlign: TextAlign.justify,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: ElevatedButton(
+            const SizedBox(height: 8),
+            if (responseData != null && responseData!['choices'] != null)
+              ListView.builder(
+                shrinkWrap: true, // Tambahkan ini untuk menghindari masalah render
+                itemCount: responseData!['choices'].length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(
+                      responseData!['choices'][index]['text'] ?? "No recommendation text available",
+                      textAlign: TextAlign.justify,
+                    ),
+                  );
+                },
+              )
+            else
+              const Text("No recommendations available"),
+            const SizedBox(height: 16),
+            ElevatedButton(
               onPressed: () {
-                Navigator.of(context).pop(); // Kembali ke halaman sebelumnya
+                Navigator.of(context).pop();
               },
               child: const Text("Back"),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
