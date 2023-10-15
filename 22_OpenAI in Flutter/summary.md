@@ -1,15 +1,16 @@
-Rangkuman materi Form Input :
+Rangkuman materi OpenAI in Flutter :
 
-1. Form adalah sebuah widget yang berfungsi untuk mengelompokkan beberapa macam input field sehingga aplikasi dapat mengolah/memproses data dengan mudah dan lebih efisien
+1. OpenAI adalah sebuah perusahaan teknologi yang mengembangkan teknologi kecerdasan buatan (AI) canggih. Misi utama OpenAI adalah untuk memastikan bahwa kecerdasan buatan dapat digunakan untuk kebaikan manusia dan menjadi manfaat universal. Mereka terkenal dengan berbagai proyek dan produk AI, termasuk GPT-3, yang merupakan salah satu model bahasa alami terkemuka yang mampu menghasilkan teks berkualitas tinggi.
 
-2. Input field merupakan sebuah widget dimana pengguna dapat memasukkan berbagai macam informasi yang dibutuhkan sesuai dari ketentuan aplikasi. Beberapa jenis input field dalam flutter ada TextField, Checkbox, Radio dan Dropdown button 
+2. OpenAI menyediakan berbagai produk dan teknologi AI yang memiliki berbagai fungsi dan manfaat, seperti:
+   -Pemrosesan Bahasa Alami (NLP): OpenAI memiliki model seperti GPT-3 yang dapat digunakan untuk tugas-tugas pemrosesan bahasa alami seperti generasi teks, terjemahan, pemahaman bahasa alami, dan banyak lagi.
+   -Generasi Konten: GPT-3 dapat digunakan untuk menghasilkan konten seperti artikel, cerita, dan deskripsi produk.
+   -Pengenalan Gambar: OpenAI mengembangkan teknologi AI untuk pengenalan gambar dan visualisasi data.
+   -Penelitian AI: OpenAI memajukan riset dan pengembangan di bidang kecerdasan buatan.
+   -Automasi Tugas: Produk OpenAI dapat digunakan untuk otomatisasi tugas-tugas seperti layanan pelanggan dan analisis data.
 
-3. Button merupakan suatu widget yang dapat melakukan fungsi tertentu saat ditekan. beberapa jenis button dalam flutter ada ElevatedButton, TextButton, dan IconButton
-
-Rangkuman materi Advance Form : 
-
-1. Date Picker merupakan sebuah widget berbentuk kalender yang memungkinkan user untuk memilih input tanggal yang diinginkan dari kalender
-
-2. Color Picker merupakan sebuah widget berbentuk list palet warna yang memungkinkan user untuk memilih input warna yang ingin digunakan dalam aplikasi
-
-3. File Picker merupakan sebuah widget yang memungkinkan user untuk memilih dan mengupload file/dokumen dari dalam storage device user untuk digunakan pada kebutuhan aplikasi
+3. Cara integrasi API OpenAI :
+   -Membuat akun atau mengakses Dashboard OpenAI.
+   -Mendapatkan API Key yang diperlukan untuk autentikasi.
+   -Menggunakan API Key dalam permintaan HTTP ke API OpenAI menggunakan metode POST.
+   -Menganalisis dan mengelola respons yang diberikan oleh API OpenAI untuk mendapatkan hasil yang diinginkan.

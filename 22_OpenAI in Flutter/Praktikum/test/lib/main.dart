@@ -1,9 +1,16 @@
-//main.dart
+// main.dart
 import 'package:flutter/material.dart';
 import 'package:test/screens/home.dart';
+import 'package:provider/provider.dart';
+import 'package:test/providers/smartphone_recommendation_provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => SmartphoneRecommendationProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

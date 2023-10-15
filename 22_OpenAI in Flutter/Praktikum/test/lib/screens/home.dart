@@ -1,7 +1,9 @@
-// lib/screens/home_screen.dart
+// home_screen.dart
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:test/providers/smartphone_recommendation_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:test/screens/result_page.dart';
-import 'package:test/services/smartphone_recommendation_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -16,13 +18,15 @@ class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _cameraController = TextEditingController();
   final TextEditingController _storageController = TextEditingController();
   bool isLoading = false;
-  Map<String, dynamic>? recommendation;
 
   @override
   Widget build(BuildContext context) {
+    final recommendationProvider =
+        Provider.of<SmartphoneRecommendationProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Smartphone Recommendation'),
+        title: const Text('AI App'),
       ),
       body: SingleChildScrollView(
         child: Form(
@@ -47,6 +51,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     labelText: 'Budget',
                     hintText: 'Enter the budget',
                   ),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(
+                        RegExp(r'[0-9]')), // Hanya izinkan angka
+                  ],
                   validator: (value) {
                     if (value?.isEmpty ?? true) {
                       return 'Please enter the budget';
@@ -63,6 +71,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     labelText: 'Camera Quality (MP)',
                     hintText: 'Enter the camera quality',
                   ),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(
+                        RegExp(r'[0-9]')), // Hanya izinkan angka
+                  ],
                   validator: (value) {
                     if (value?.isEmpty ?? true) {
                       return 'Please enter the camera quality';
@@ -79,6 +91,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     labelText: 'Storage Capacity (GB)',
                     hintText: 'Enter the storage capacity',
                   ),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(
+                        RegExp(r'[0-9]')), // Hanya izinkan angka
+                  ],
                   validator: (value) {
                     if (value?.isEmpty ?? true) {
                       return 'Please enter the storage capacity';
@@ -99,23 +115,20 @@ class _HomeScreenState extends State<HomeScreen> {
                             setState(() {
                               isLoading = true;
                             });
-                            final result = await SmartphoneRecommendationService()
-                                .getRecommendations(
-                              harga: _budgetController.text,
+                            await recommendationProvider.getRecommendations(
+                              budget: _budgetController.text,
                               camera: _cameraController.text,
                               storage: _storageController.text,
                             );
 
-                            if (result != null) {
-                              setState(() {
-                                recommendation = result;
-                              });
-
+                            if (recommendationProvider.recommendation != null) {
                               // Navigasi ke halaman hasil
                               Navigator.of(context).push(
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return ResultScreen(responseData: recommendation!);
+                                    return ResultScreen(
+                                        responseData: recommendationProvider
+                                            .recommendation!);
                                   },
                                 ),
                               );

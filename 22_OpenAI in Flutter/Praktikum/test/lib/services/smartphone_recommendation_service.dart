@@ -13,7 +13,7 @@ class SmartphoneRecommendationService {
       _dio.options = BaseOptions(
         baseUrl: 'https://api.openai.com/v1/',
         headers: {
-          'Authorization': 'Bearer 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',
+          'Authorization': 'Bearer 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',
         },
       );
 
@@ -22,7 +22,7 @@ class SmartphoneRecommendationService {
         data: {
           "model": "text-davinci-003",
           "prompt":
-              "Kamu adalah seorang gadget expert, Berikan saya rekomendasi HP dengan kisaran harga Rp. $harga, kamera $camera MP, dan storage $storage GB.",
+              "Kamu adalah seorang gadget expert, Berikan saya rekomendasi HP dengan kisaran harga $harga rupiah, kamera $camera Megapixel, dan storage $storage Gigabyte.",
           "temperature": 0.4,
           "max_tokens": 900,
           "top_p": 1,
